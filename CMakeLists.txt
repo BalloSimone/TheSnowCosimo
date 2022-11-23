@@ -7,5 +7,5 @@ include_directories(.)
 
 add_executable(TheSnowCosimo
 main.cpp
-BackEnd/Components/map/chunk/Chunk.cpp
-BackEnd/Components/map/Level.cpp)
+backend/components/map/chunk/Chunk.cpp
+backend/components/map/Level.cpp)
