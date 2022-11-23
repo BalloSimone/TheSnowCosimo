@@ -1,11 +1,9 @@
-#include <iostream>
 #include <ncurses.h>
 
+#include <iostream>
 
-int main(){
+int main() {
     initscr();
     endwin();
-return 0;
+    return 0;
 }
-
-
