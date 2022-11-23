@@ -4,8 +4,14 @@ project(TheSnowCosimo)
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
+find_package(Curses REQUIRED)
+include_directories(${CURSES_INCLUDE_DIR})
+
 
 add_executable(TheSnowCosimo
 main.cpp
-BackEnd/Components/map/chunk/Chunk.cpp
-BackEnd/Components/map/Level.cpp)
+backend/components/map/chunk/Chunk.cpp
+backend/components/map/Level.cpp
+backend/components/entity/Entity.cpp
+)
+target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
