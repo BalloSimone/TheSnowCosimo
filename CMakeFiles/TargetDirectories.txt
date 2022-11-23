@@ -1,3 +1,0 @@
-/home/bitrey/TheSnowCosimo/CMakeFiles/TheSnowCosimo.dir
-/home/bitrey/TheSnowCosimo/CMakeFiles/edit_cache.dir
-/home/bitrey/TheSnowCosimo/CMakeFiles/rebuild_cache.dir

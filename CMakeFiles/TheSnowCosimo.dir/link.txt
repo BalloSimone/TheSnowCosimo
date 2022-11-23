@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/TheSnowCosimo.dir/main.cpp.o CMakeFiles/TheSnowCosimo.dir/backend/components/map/chunk/Chunk.cpp.o CMakeFiles/TheSnowCosimo.dir/backend/components/map/Level.cpp.o CMakeFiles/TheSnowCosimo.dir/backend/components/entity/Entity.cpp.o -o TheSnowCosimo  -lcurses /usr/lib/x86_64-linux-gnu/libform.so 
