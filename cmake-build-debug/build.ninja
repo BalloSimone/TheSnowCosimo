@@ -79,19 +79,19 @@ build CMakeFiles/TheSnowCosimo.dir/main.cpp.o: CXX_COMPILER__TheSnowCosimo_Debug
   OBJECT_DIR = CMakeFiles/TheSnowCosimo.dir
   OBJECT_FILE_DIR = CMakeFiles/TheSnowCosimo.dir
 
-build CMakeFiles/TheSnowCosimo.dir/BackEnd/Components/map/chunk/Chunk.cpp.o: CXX_COMPILER__TheSnowCosimo_Debug /Users/simo/CLionProjects/TheSnowCosimo/BackEnd/Components/map/chunk/Chunk.cpp || cmake_object_order_depends_target_TheSnowCosimo
-  DEP_FILE = CMakeFiles/TheSnowCosimo.dir/BackEnd/Components/map/chunk/Chunk.cpp.o.d
+build CMakeFiles/TheSnowCosimo.dir/backend/components/map/chunk/Chunk.cpp.o: CXX_COMPILER__TheSnowCosimo_Debug /Users/simo/CLionProjects/TheSnowCosimo/backend/components/map/chunk/Chunk.cpp || cmake_object_order_depends_target_TheSnowCosimo
+  DEP_FILE = CMakeFiles/TheSnowCosimo.dir/backend/components/map/chunk/Chunk.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.0.sdk -std=gnu++14
   INCLUDES = -I/Users/simo/CLionProjects/TheSnowCosimo/.
   OBJECT_DIR = CMakeFiles/TheSnowCosimo.dir
-  OBJECT_FILE_DIR = CMakeFiles/TheSnowCosimo.dir/BackEnd/Components/map/chunk
+  OBJECT_FILE_DIR = CMakeFiles/TheSnowCosimo.dir/backend/components/map/chunk
 
-build CMakeFiles/TheSnowCosimo.dir/BackEnd/Components/map/Level.cpp.o: CXX_COMPILER__TheSnowCosimo_Debug /Users/simo/CLionProjects/TheSnowCosimo/BackEnd/Components/map/Level.cpp || cmake_object_order_depends_target_TheSnowCosimo
-  DEP_FILE = CMakeFiles/TheSnowCosimo.dir/BackEnd/Components/map/Level.cpp.o.d
+build CMakeFiles/TheSnowCosimo.dir/backend/components/map/Level.cpp.o: CXX_COMPILER__TheSnowCosimo_Debug /Users/simo/CLionProjects/TheSnowCosimo/backend/components/map/Level.cpp || cmake_object_order_depends_target_TheSnowCosimo
+  DEP_FILE = CMakeFiles/TheSnowCosimo.dir/backend/components/map/Level.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.0.sdk -std=gnu++14
   INCLUDES = -I/Users/simo/CLionProjects/TheSnowCosimo/.
   OBJECT_DIR = CMakeFiles/TheSnowCosimo.dir
-  OBJECT_FILE_DIR = CMakeFiles/TheSnowCosimo.dir/BackEnd/Components/map
+  OBJECT_FILE_DIR = CMakeFiles/TheSnowCosimo.dir/backend/components/map
 
 
 # =============================================================================
@@ -101,7 +101,7 @@ build CMakeFiles/TheSnowCosimo.dir/BackEnd/Components/map/Level.cpp.o: CXX_COMPI
 #############################################
 # Link the executable TheSnowCosimo
 
-build TheSnowCosimo: CXX_EXECUTABLE_LINKER__TheSnowCosimo_Debug CMakeFiles/TheSnowCosimo.dir/main.cpp.o CMakeFiles/TheSnowCosimo.dir/BackEnd/Components/map/chunk/Chunk.cpp.o CMakeFiles/TheSnowCosimo.dir/BackEnd/Components/map/Level.cpp.o
+build TheSnowCosimo: CXX_EXECUTABLE_LINKER__TheSnowCosimo_Debug CMakeFiles/TheSnowCosimo.dir/main.cpp.o CMakeFiles/TheSnowCosimo.dir/backend/components/map/chunk/Chunk.cpp.o CMakeFiles/TheSnowCosimo.dir/backend/components/map/Level.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.0.sdk
   OBJECT_DIR = CMakeFiles/TheSnowCosimo.dir
   POST_BUILD = :

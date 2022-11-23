@@ -1,11 +1,20 @@
-
-#define chunkDimension 16
+#include <ctime>
+#include <cstdlib>
+#define chunkDimension 32
 
 class Chunk {
-    int x[chunkDimension], y[chunkDimension];
 
     public:
+    int floor_y[chunkDimension]{};
+    Chunk(){
+        randomChunk();
+    }
+    protected:
         void randomChunk();
+
+    private:
+        void spawn_floor();
+        void spawn_platforms();
 };
 
 
