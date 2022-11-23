@@ -25,27 +25,14 @@ int main() {
     start_color();
 
     // win settings
+    cbreak();
     nodelay(win, true);
     timeout(10);
 
-    // xp bar
-    mvwprintw(win, 1, 1, "prova prova");
-    mvwprintw(win, 2, 1, "XP: ");
-    // 1 = bianco su nero
-    init_pair(1, COLOR_WHITE, COLOR_BLACK);
-    // 2 = xp bar bianca
-    init_pair(2, COLOR_WHITE, COLOR_WHITE);
-    // 3 = xp bar rossa
-    init_pair(3, COLOR_RED, COLOR_RED);
-    wattron(win, COLOR_PAIR(3));
-    wprintw(win, "       ");
-    wattron(win, COLOR_PAIR(2));
-    wprintw(win, "   ");
-    wattron(win, COLOR_PAIR(1));
-    wprintw(win, " 70%%");
-
     box(win, 0, 0);
     wrefresh(win);
+
+    mvwprintw(win, 1, 1, "DEBUG");
 
     int* ticks = new int;
     *ticks = 0;
@@ -60,13 +47,19 @@ int main() {
         } else if (key == 'd') {
             entity.move(1, 0);
         } else if (key == ' ') {
-            entity.move(0, -1);
+            entity.jump();
         } else if (key == 'e') {
             // attacca eugenio
+        } else if (key == 'c') {
+            // DEBUG
+            entity.coins += 5;
+        } else if (key == 'v') {
+            // DEBUG
+            entity.lives += 1;
         }
-        mvwprintw(win, 1, 13, "%d", *ticks);
+        mvwprintw(win, 1, 8, "Tick:%04d", *ticks);
         wrefresh(win);
-        *ticks++;
+        (*ticks)++;
         entity.tick();
     }
 
