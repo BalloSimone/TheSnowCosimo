@@ -3,8 +3,4 @@
 
 void Level::generateLevel() {
 
-
-
-
-
 }
