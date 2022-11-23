@@ -1,5 +1,11 @@
-//
-// Created by Simone Ballo on 23/11/22.
-//
+#include <iostream>
+#include <ncurses.h>
 
-#include "main.h"
+
+int main(){
+    initscr();
+    endwin();
+return 0;
+}
+
+
