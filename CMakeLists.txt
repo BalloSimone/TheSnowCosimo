@@ -13,5 +13,7 @@ main.cpp
 backend/components/map/chunk/Chunk.cpp
 backend/components/map/Level.cpp
 backend/components/entity/Entity.cpp
+frontend/Gui.cpp
+frontend/mapgui/MapGUI.cpp
 )
 target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})

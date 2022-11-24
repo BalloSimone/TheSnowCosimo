@@ -1,20 +1,18 @@
-#include <ncurses.h>
+
 #include <iostream>
-#include "frontend/Gui.cpp"
 
 #include "backend/components/entity/Entity.h"
+#include "frontend/Gui.h"
 
 #define WIDTH 128
 #define HEIGHT 32
 
 #include <iostream>
 
-#include "backend/components/map/chunk/Chunk.h"
-
 int main() {
     srand(time(nullptr));
     Chunk chunk;
-    
+
     WINDOW *win = newwin(WIN_LENGTH, WIN_HEIGTH, 0, 0);
     initscr();
     Gui gameGui(win);
@@ -42,7 +40,7 @@ int main() {
 
     mvwprintw(win, 1, 1, "DEBUG");
 
-    int* ticks = new int;
+    int *ticks = new int;
     *ticks = 0;
 
     Entity entity(win, 30, 10, 0, 0, 10, 10, ticks);
@@ -70,6 +68,7 @@ int main() {
         (*ticks)++;
         entity.tick();
 
-    endwin();
-    return 0;
+        endwin();
+        return 0;
+    }
 }

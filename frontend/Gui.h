@@ -1,19 +1,21 @@
 #include "mapgui/MapGUI.cpp"
+
+#ifndef GUI_H
+#define GUI_H
+
 #define WIN_LENGTH 1024
 #define WIN_HEIGTH 768
 
-
-
-
-struct ListLevel{
+struct ListLevel
+{
     MapGUI level;
-    ListLevel* prec;
-    ListLevel* succ;
+    ListLevel *prec;
+    ListLevel *succ;
 };
-typedef ListLevel* Levels;
+typedef ListLevel *Levels;
 
-
-class Gui {
+class Gui
+{
 
 protected:
     MapGUI level;
@@ -24,5 +26,6 @@ public:
     Gui(WINDOW *win);
     void succLevel();
     void precLevel();
-
 };
+
+#endif

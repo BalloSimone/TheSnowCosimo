@@ -1,25 +1,30 @@
+#ifndef CHUNK_H
+#define CHUNK_H
+
 #include <ctime>
 #include <cstdlib>
+
 #define CHUNK_DIMENSION 32
 
-//parametri per la generazione della mappa
+// parametri per la generazione della mappa
 #define PERC_PIT 30
 #define DIFF_BEET_PLAT 4
-#define LEN_NO_PIT 20 //percent of the chunk dimension
-#define LEN_PIT 15 //percent of the chunk dimension
+#define LEN_NO_PIT 20 // percent of the chunk dimension
+#define LEN_PIT 15    // percent of the chunk dimension
 
-class Chunk {
+class Chunk
+{
 
-    public:
+public:
     int floor_y[CHUNK_DIMENSION];
     Chunk();
 
-    protected:
-        void randomChunk();
+protected:
+    void randomChunk();
 
-    private:
-        void spawn_floor();
-        void spawn_platforms();
+private:
+    void spawn_floor();
+    void spawn_platforms();
 };
 
-
+#endif
