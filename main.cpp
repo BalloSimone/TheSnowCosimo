@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <ncurses.h>
 
 #include "backend/components/entity/Entity.h"
@@ -12,11 +13,18 @@
 int main() {
     srand(time(nullptr));
     Chunk chunk;
+=======
+#include <iostream>
+#include "frontend/Gui.cpp"
 
-    for (int i = 0; i < 32; i++) {
-        std::cout << chunk.floor_y[i] << " ";
-    }
+int main(){
+    WINDOW *win = newwin(WIN_LENGTH, WIN_HEIGTH, 0, 0);
+    initscr();
+    Gui gameGui(win);
+>>>>>>> ecfd7fd698f9902515e9f3440c44dcc55de10b2e
 
+
+<<<<<<< HEAD
     initscr();
 
     WINDOW* win = newwin(HEIGHT, WIDTH, 0, 0);
@@ -71,6 +79,8 @@ int main() {
         (*ticks)++;
         entity.tick();
     }
+=======
+>>>>>>> ecfd7fd698f9902515e9f3440c44dcc55de10b2e
 
     endwin();
     return 0;
