@@ -18,3 +18,5 @@ frontend/Gui.cpp
 frontend/mapgui/MapGUI.cpp
 )
 target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
+
+set(CMAKE_BUILD_TYPE Debug)

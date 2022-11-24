@@ -20,7 +20,7 @@ Entity::Entity(WINDOW* win, int coordX, int coordY, int velocityX, int velocityY
     this->ticks = ticks;
 
     // these have a default value
-    this->ticks = NULL;
+    // this->ticks = NULL;
     this->lastYTick = -1;
     this->jumpTick = -1;
     this->isJumping = false;

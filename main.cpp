@@ -68,7 +68,8 @@ int main() {
         (*ticks)++;
         entity.tick();
 
-        endwin();
-        return 0;
     }
+
+    endwin();
+    return 0;
 }
