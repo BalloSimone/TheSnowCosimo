@@ -13,6 +13,7 @@ main.cpp
 backend/components/map/chunk/Chunk.cpp
 backend/components/map/Level.cpp
 backend/components/entity/Entity.cpp
+backend/components/entity/player/Player.cpp
 frontend/Gui.cpp
 frontend/mapgui/MapGUI.cpp
 )

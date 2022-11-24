@@ -5,7 +5,7 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 
-#include "chunk/Chunk.cpp"
+#include "chunk/Chunk.h"
 #define N_CHUNCKS 4
 
 class Level {

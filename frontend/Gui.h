@@ -1,6 +1,6 @@
-#include "mapgui/MapGUI.cpp"
-
 #ifndef GUI_H
+#include "mapgui/MapGUI.h"
+
 #define GUI_H
 
 #define WIN_LENGTH 1024

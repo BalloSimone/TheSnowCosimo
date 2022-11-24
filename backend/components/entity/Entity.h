@@ -8,11 +8,7 @@
 class Entity
 {
 protected:
-    static int clamp(const int val, const int min, const int max)
-    {
-        return val < min ? min : val > max ? max
-                                           : val;
-    }
+    int clamp(const int val, const int min, const int max);
 
     WINDOW *win;
     int coordX;
@@ -22,13 +18,13 @@ protected:
     int maxXVel;
     int maxYVel;
 
-    int *ticks = NULL;
-    int lastYTick = -1;
-    int jumpTick = -1;
-    bool isJumping = false;
-    int shownHealth = 0; // health shown in bar
-    int shownCoins = -1; // don't re-render
-    int shownLives = -1; // don't re-render
+    int *ticks;
+    int lastYTick;
+    int jumpTick;
+    bool isJumping;
+    int shownHealth; // health shown in bar
+    int shownCoins; // don't re-render
+    int shownLives; // don't re-render
 
     void _undrawPlayer();
     void _drawPlayer();
@@ -43,9 +39,9 @@ public:
     void tick();
     void jump();
     void collectCoins();
-    int health = 100; // 0 - 100
-    int coins = 0;    // 0 - 100
-    int lives = 5;    // 1 - 99
+    int health; // 0 - 100
+    int coins;    // 0 - 100
+    int lives;    // 1 - 99
 };
 
 #endif

@@ -8,6 +8,7 @@
 #define JUMP_TICKS 20
 #define JUMP_HEIGHT 4
 
+
 Entity::Entity(WINDOW* win, int coordX, int coordY, int velocityX, int velocityY, const int maxXVel, const int maxYVel, int* ticks) {
     this->win = win;
     this->coordX = coordX;
@@ -17,6 +18,22 @@ Entity::Entity(WINDOW* win, int coordX, int coordY, int velocityX, int velocityY
     this->maxXVel = maxXVel;
     this->maxYVel = maxYVel;
     this->ticks = ticks;
+
+    // these have a default value
+    this->ticks = NULL;
+    this->lastYTick = -1;
+    this->jumpTick = -1;
+    this->isJumping = false;
+    this->shownHealth = 0; // health shown in bar
+    this->shownCoins = -1; // don't re-render
+    this->shownLives = -1; // don't re-render
+    this->health = 100; // 0 - 100
+    this->coins = 0;    // 0 - 100
+    this->lives = 5;    // 1 - 99
+}
+
+int Entity::clamp(int val, int min, int max) {
+    return val < min ? min : val > max ? max : val;
 }
 
 void Entity::_undrawPlayer() {
