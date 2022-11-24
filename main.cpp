@@ -1,16 +1,13 @@
 #include <iostream>
-#include <ncurses.h>
-#include "backend/components/map/chunk/Chunk.h"
+#include "frontend/Gui.cpp"
 
 int main(){
-    srand(time(nullptr));
-    Chunk chunk;
+    WINDOW *win = newwin(WIN_LENGTH, WIN_HEIGTH, 0, 0);
+    initscr();
+    Gui gameGui(win);
 
-    for (int i = 0; i < 32; i++) {
-        std::cout << chunk.floor_y[i] << " ";
-    }
 
+
+    endwin();
     return 0;
 }
-
-
