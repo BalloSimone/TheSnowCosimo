@@ -5,9 +5,8 @@
 
 #include <iostream>
 
-class Entity
-{
-protected:
+class Entity {
+   protected:
     int clamp(const int val, const int min, const int max);
 
     WINDOW *win;
@@ -22,9 +21,9 @@ protected:
     int lastYTick;
     int jumpTick;
     bool isJumping;
-    int shownHealth; // health shown in bar
-    int shownCoins; // don't re-render
-    int shownLives; // don't re-render
+    int shownHealth;  // health shown in bar
+    int shownCoins;   // don't re-render
+    int shownLives;   // don't re-render
 
     void _undrawPlayer();
     void _drawPlayer();
@@ -33,15 +32,15 @@ protected:
     void _displayCoins();
     void _displayLives();
 
-public:
+   public:
     Entity(WINDOW *win, int coordX, int coordY, int velocityX, int velocityY, const int maxXVel, const int maxYVel, int *ticks);
     void move(int addX, int addY);
     void tick();
     void jump();
     void collectCoins();
-    int health; // 0 - 100
-    int coins;    // 0 - 100
-    int lives;    // 1 - 99
+    int health;  // 0 - 100
+    int coins;   // 0 - 100
+    int lives;   // 1 - 99
 };
 
 #endif

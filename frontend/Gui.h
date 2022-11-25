@@ -3,25 +3,22 @@
 
 #define GUI_H
 
-#define WIN_LENGTH 1024
-#define WIN_HEIGTH 768
+#define WIN_LENGTH 128
+#define WIN_HEIGTH 32
 
-struct ListLevel
-{
+struct ListLevel {
     MapGUI level;
     ListLevel *prec;
     ListLevel *succ;
 };
 typedef ListLevel *Levels;
 
-class Gui
-{
-
-protected:
+class Gui {
+   protected:
     MapGUI level;
     void initMap();
 
-public:
+   public:
     WINDOW *screen;
     Gui(WINDOW *win);
     void succLevel();

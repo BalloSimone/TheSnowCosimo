@@ -1,13 +1,15 @@
+
 #include "Entity.h"
 
 #include <ncurses.h>
 
 #include <iostream>
 
-#define GRAVITY_TICKS 10
-#define JUMP_TICKS 20
-#define JUMP_HEIGHT 4
+#include "frontend/Gui.h"
 
+#define GRAVITY_TICKS 10
+#define JUMP_TICKS 10
+#define JUMP_HEIGHT 4
 
 Entity::Entity(WINDOW* win, int coordX, int coordY, int velocityX, int velocityY, const int maxXVel, const int maxYVel, int* ticks) {
     this->win = win;
@@ -24,16 +26,17 @@ Entity::Entity(WINDOW* win, int coordX, int coordY, int velocityX, int velocityY
     this->lastYTick = -1;
     this->jumpTick = -1;
     this->isJumping = false;
-    this->shownHealth = 0; // health shown in bar
-    this->shownCoins = -1; // don't re-render
-    this->shownLives = -1; // don't re-render
-    this->health = 100; // 0 - 100
-    this->coins = 0;    // 0 - 100
-    this->lives = 5;    // 1 - 99
+    this->shownHealth = 0;  // health shown in bar
+    this->shownCoins = -1;  // don't re-render
+    this->shownLives = -1;  // don't re-render
+    this->health = 100;     // 0 - 100
+    this->coins = 0;        // 0 - 100
+    this->lives = 5;        // 1 - 99
 }
 
 int Entity::clamp(int val, int min, int max) {
-    return val < min ? min : val > max ? max : val;
+    return val < min ? min : val > max ? max
+                                       : val;
 }
 
 void Entity::_undrawPlayer() {
@@ -50,8 +53,8 @@ void Entity::_drawPlayer() {
 
 void Entity::move(int addX, int addY) {
     this->_undrawPlayer();
-    this->coordX += addX;
-    this->coordY += addY;
+    this->coordX = this->clamp(this->coordX + addX, 1, WIN_LENGTH - 2);
+    this->coordY = this->clamp(this->coordY + addY, 1, WIN_HEIGTH - 2);
     this->_drawPlayer();
 }
 
@@ -86,9 +89,7 @@ void Entity::jump() {
     if (!this->isJumping && (this->jumpTick == -1 || *this->ticks - this->jumpTick > JUMP_TICKS)) {
         this->isJumping = true;
         this->jumpTick = *this->ticks;
-        this->_undrawPlayer();
-        this->coordY -= JUMP_HEIGHT;
-        this->_drawPlayer();
+        this->move(0, -JUMP_HEIGHT);
     }
 }
 

@@ -4,17 +4,13 @@
 #include "backend/components/entity/Entity.h"
 #include "frontend/Gui.h"
 
-#define WIDTH 128
-#define HEIGHT 32
-
-#include <iostream>
-
 int main() {
     srand(time(nullptr));
     Chunk chunk;
 
-    WINDOW *win = newwin(WIN_LENGTH, WIN_HEIGTH, 0, 0);
     initscr();
+
+    WINDOW *win = newwin(WIN_HEIGTH, WIN_LENGTH, 0, 0);
     Gui gameGui(win);
 
     refresh();
@@ -34,7 +30,6 @@ int main() {
     cbreak();
     nodelay(win, true);
     timeout(10);
-
     box(win, 0, 0);
     wrefresh(win);
 
@@ -67,7 +62,6 @@ int main() {
         wrefresh(win);
         (*ticks)++;
         entity.tick();
-
     }
 
     endwin();
