@@ -1,10 +1,20 @@
 #include <iostream>
-#include "frontend/Gui.cpp"
+#include "frontend/Gui.hpp"
 
 int main(){
-    WINDOW *win = newwin(WIN_LENGTH, WIN_HEIGTH, 0, 0);
+    WINDOW *win = newwin(64, 64, 0, 0);
+    srand(time(nullptr));
     initscr();
-    Gui gameGui(win);
+    Gui gui(win);
+
+
+
+
+    int key = -1;
+    while(key != 'q'){
+        key = getch();
+        refresh();
+    }
 
 
 
