@@ -1,25 +1,29 @@
 #include <cstdlib>
-#include "Chunk.h"
-#include <iostream>
+#include "Chunk.hpp"
 
 
 Chunk::Chunk() {
-    randomChunk();
 }
 
-void Chunk::randomChunk() {
-    spawn_floor();
+void Chunk::create_chunk(int startHeight) {
+    spawn_floor(startHeight);
 }
 
 void Chunk::spawn_platforms() {
-
-
-
 }
 
-void Chunk::spawn_floor() {
+void Chunk::spawn_floor(int startCoord) {
     int l = 0, h, i = 0, lastH = rand() % CHUNK_DIMENSION / 2 + CHUNK_DIMENSION / 3;
     bool pit;
+
+    if(startCoord != -1) {
+        l = rand() % (CHUNK_DIMENSION * LEN_NO_PIT / 100) + MIN_LUNG_PLAT;
+        while(l > 0 && i < CHUNK_DIMENSION){
+            floor_y[i] = h;
+            i++;
+            l--;
+        }
+    }
 
     while (i < CHUNK_DIMENSION){
 
@@ -28,8 +32,8 @@ void Chunk::spawn_floor() {
         if(rand() % 100 + 1 < PERC_PIT) pit = true;
 
         //length
-        if(pit) l = rand() % (CHUNK_DIMENSION * LEN_PIT / 100) + 1;
-        else l = rand() % (CHUNK_DIMENSION * LEN_NO_PIT / 100) + 1;
+        if(pit) l = rand() % (CHUNK_DIMENSION * LEN_PIT / 100) + MIN_LUNG_PLAT;
+        else l = rand() % (CHUNK_DIMENSION * LEN_NO_PIT / 100) + MIN_LUNG_PLAT;
 
         //height
         if(pit && (i != 0) && l+i < CHUNK_DIMENSION) h = 0;

@@ -2,18 +2,13 @@
 #include <iostream>
 
 #include "backend/components/entity/player/Player.h"
-#include "frontend/Gui.h"
+#include "frontend/Gui.hpp"
 
 int main() {
+    WINDOW *win = newwin(64, 64, 0, 0);
     srand(time(nullptr));
-    Chunk chunk;
-
     initscr();
-
-    WINDOW *win = newwin(WIN_HEIGTH, WIN_LENGTH, 0, 0);
-    Gui gameGui(win);
-
-    refresh();
+    Gui gui(win);
 
     // global settings
     noecho();

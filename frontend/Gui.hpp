@@ -1,7 +1,7 @@
-#ifndef GUI_H
-#include "mapgui/MapGUI.h"
+#ifndef GUI_HPP
+#define GUI_HPP
 
-#define GUI_H
+#include "mapgui/MapGUI.hpp"
 
 #define WIN_LENGTH 128
 #define WIN_HEIGTH 32
