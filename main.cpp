@@ -1,7 +1,7 @@
 
 #include <iostream>
 
-#include "backend/components/entity/Entity.h"
+#include "backend/components/entity/player/Player.h"
 #include "frontend/Gui.h"
 
 int main() {
@@ -38,30 +38,30 @@ int main() {
     int *ticks = new int;
     *ticks = 0;
 
-    Entity entity(win, 30, 10, 0, 0, 10, 10, ticks);
+    Player player(win, 30, 10, ticks);
 
     int key = -1;
     while (key != 'q') {
         key = getch();
         if (key == 'a') {
-            entity.move(-1, 0);
+            player.move(-1, 0);
         } else if (key == 'd') {
-            entity.move(1, 0);
+            player.move(1, 0);
         } else if (key == ' ') {
-            entity.jump();
+            player.jump();
         } else if (key == 'e') {
             // attacca eugenio
         } else if (key == 'c') {
             // DEBUG
-            entity.coins += 5;
+            player.coins += 5;
         } else if (key == 'v') {
             // DEBUG
-            entity.lives += 1;
+            player.lives += 1;
         }
         mvwprintw(win, 1, 8, "Tick:%04d", *ticks);
         wrefresh(win);
         (*ticks)++;
-        entity.tick();
+        player.tick();
     }
 
     endwin();
