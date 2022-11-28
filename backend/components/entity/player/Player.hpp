@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "../Entity.h"
+#include "../Entity.hpp"
 
 #define JUMP_TICKS 10
 #define JUMP_HEIGHT 4

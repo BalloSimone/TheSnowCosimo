@@ -1,7 +1,7 @@
 
 #include <iostream>
 
-#include "backend/components/entity/player/Player.h"
+#include "backend/components/entity/player/Player.hpp"
 #include "frontend/Gui.hpp"
 
 int main() {

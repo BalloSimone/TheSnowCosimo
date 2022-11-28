@@ -1,11 +1,11 @@
 
-#include "Entity.h"
+#include "Entity.hpp"
 
 #include <ncurses.h>
 
 #include <iostream>
 
-#include "frontend/Gui.h"
+#include "frontend/Gui.hpp"
 
 Entity::Entity(WINDOW* win, int coordX, int coordY, int* ticks) {
     this->win = win;

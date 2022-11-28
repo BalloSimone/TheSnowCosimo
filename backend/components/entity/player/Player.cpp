@@ -1,8 +1,8 @@
-#include "Player.h"
+#include "Player.hpp"
 
-#include <frontend/Gui.h>
+#include <frontend/Gui.hpp>
 
-#include "../Entity.h"
+#include "../Entity.hpp"
 
 #define JUMP_TICKS 10
 #define JUMP_HEIGHT 4

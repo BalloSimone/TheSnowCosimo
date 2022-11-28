@@ -2,17 +2,15 @@
 #define LEVEL_HPP
 
 #include "chunk/Chunk.hpp"
-#define N_CHUNCKS 8
+#define N_CHUNKS 8
 
 class Level {
-
-protected:
+   protected:
     void generateLevel();
-public:
-    Level();
-    Chunk chunks[N_CHUNCKS];
 
+   public:
+    Level();
+    Chunk chunks[N_CHUNKS];
 };
 
 #endif
-
