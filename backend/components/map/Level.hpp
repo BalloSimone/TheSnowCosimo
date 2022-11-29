@@ -2,7 +2,7 @@
 #define LEVEL_HPP
 
 #include "chunk/Chunk.hpp"
-#define N_CHUNKS 8
+#define N_CHUNKS 4
 
 class Level {
 
