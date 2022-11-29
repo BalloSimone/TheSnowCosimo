@@ -9,16 +9,17 @@
 
 
 class MapGUI {
-    protected:
-        Level level;
+protected:
+    Level level;
 
-    public:
-        MapGUI();
-        void getLevel();
-        void drawMap();
+public:
+    MapGUI();
+    void getLevel();
+    void drawMap();
 
 private:
-
+    void drawFloors();
+    void drawPlatforms();
 };
 
 #endif
