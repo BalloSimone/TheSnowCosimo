@@ -6,13 +6,10 @@
 
 Gui::Gui(WINDOW *win) {
   screen = win;
-  initMap();
+  level.screen = win;
+  level.drawMap();
 }
 
-
-void Gui::initMap() {
-
-}
 
 void Gui::precLevel() {
 

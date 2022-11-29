@@ -6,10 +6,12 @@
 #define SCALE 1
 #define TOP_PADDING 15
 
-MapGUI::MapGUI() {
-    drawMap();
+MapGUI::MapGUI(WINDOW* scr) {
+    screen = scr;
 }
 
+MapGUI::MapGUI() {
+}
 
 void MapGUI::drawMap() {
     drawFloors();   //draw floors
@@ -40,7 +42,7 @@ void MapGUI::drawFloors(){
             int k=0;
             while(k<SCALE){
                 //print floor
-                mvaddch(((maxY + TOP_PADDING) - chunk.floor_y[i]), x, ACS_HLINE);
+                mvwaddch(screen, ((maxY + TOP_PADDING) - chunk.floor_y[i]), x, ACS_HLINE);
 
                 //print walls
                 int h = abs(chunk.floor_y[i-1] - chunk.floor_y[i]);
@@ -52,17 +54,17 @@ void MapGUI::drawFloors(){
 
                 if (h>0 && i > 0){
 
-                    if(up) mvaddch(((maxY + TOP_PADDING) - j), x, ACS_URCORNER);
-                    else mvaddch(((maxY + TOP_PADDING) - j), x, ACS_ULCORNER);
+                    if(up) mvwaddch(screen, ((maxY + TOP_PADDING) - j), x, ACS_URCORNER);
+                    else mvwaddch(screen, ((maxY + TOP_PADDING) - j), x, ACS_ULCORNER);
                     h--;
                     j--;
                     while(h > 0){
-                        mvaddch(((maxY + TOP_PADDING) - j), x, ACS_VLINE);
+                        mvwaddch(screen, ((maxY + TOP_PADDING) - j), x, ACS_VLINE);
                         h--;
                         j--;
                     }
-                    if(up) mvaddch(((maxY + TOP_PADDING) - j), x, ACS_LLCORNER);
-                    else mvaddch(((maxY + TOP_PADDING) - j), x, ACS_LRCORNER);
+                    if(up) mvwaddch(screen, ((maxY + TOP_PADDING) - j), x, ACS_LLCORNER);
+                    else mvwaddch(screen, ((maxY + TOP_PADDING) - j), x, ACS_LRCORNER);
                 }
                 k++;
                 x++;
@@ -78,8 +80,8 @@ void MapGUI::drawPlatforms(){
         for(int i = 0; i < CHUNK_DIMENSION; i++){
             if(chunk.platform_y[i] != 0){
 
-                mvaddch(maxY + TOP_PADDING - chunk.platform_y[i], x, ACS_HLINE);
-                mvaddch(maxY + TOP_PADDING - chunk.platform_y[i] + chunk.platform_height[i], x, ACS_HLINE);
+                mvwaddch(screen, maxY + TOP_PADDING - chunk.platform_y[i], x, ACS_HLINE);
+                mvwaddch(screen, maxY + TOP_PADDING - chunk.platform_y[i] + chunk.platform_height[i], x, ACS_HLINE);
             }
             x++;
         }

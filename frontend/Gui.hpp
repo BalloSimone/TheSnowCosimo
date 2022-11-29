@@ -21,7 +21,6 @@ class Gui {
 
 protected:
     MapGUI level;
-    void initMap();
 
 public:
     WINDOW *screen;

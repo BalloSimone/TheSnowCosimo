@@ -13,7 +13,9 @@ protected:
     Level level;
 
 public:
+    MapGUI(WINDOW* scr);
     MapGUI();
+    WINDOW * screen;
     void getLevel();
     void drawMap();
 
