@@ -3,27 +3,20 @@
 //
 
 #include "MapGUI.hpp"
-#define SCALE 1
-#define TOP_PADDING 15
 
 MapGUI::MapGUI(WINDOW* scr) {
     screen = scr;
-}
-
-MapGUI::MapGUI() {
+    this->level.generateLevel();
 }
 
 void MapGUI::drawMap() {
-    drawFloors();   //draw floors
-    drawPlatforms(); //draw platforms
-    //box(stdscr, ACS_VLINE, ACS_HLINE); //draw the borders of a window
-
-
+    drawFloors();     // draw floors
+    drawPlatforms();  // draw platforms
+    // box(stdscr, ACS_VLINE, ACS_HLINE); //draw the borders of a window
 }
 
-void MapGUI::drawFloors(){
-    int maxY;
-    maxY = getmaxy(stdscr);
+void MapGUI::drawFloors() {
+    this->maxY = getmaxy(stdscr);
 
     // DEBUG
     /*
@@ -35,36 +28,34 @@ void MapGUI::drawFloors(){
     */
 
     int x = 0;
-    //DRAW FLOOR
-    for(Chunk chunk : level.chunks){
+    // DRAW FLOOR
+    for (Chunk chunk : level.chunks) {
+        for (int i = 0; i < CHUNK_DIMENSION; i++) {
+            int k = 0;
+            while (k < SCALE) {
+                // print floor
+                mvwaddch(screen, ((this->maxY + TOP_PADDING) - chunk.floor_y[i]), x, ACS_HLINE);
 
-        for(int i=0; i<CHUNK_DIMENSION; i++){
-            int k=0;
-            while(k<SCALE){
-                //print floor
-                mvwaddch(screen, ((maxY + TOP_PADDING) - chunk.floor_y[i]), x, ACS_HLINE);
-
-                //print walls
-                int h = abs(chunk.floor_y[i-1] - chunk.floor_y[i]);
-                bool up = (chunk.floor_y[i-1] > chunk.floor_y[i]);
+                // print walls
+                int h = abs(chunk.floor_y[i - 1] - chunk.floor_y[i]);
+                bool up = (chunk.floor_y[i - 1] > chunk.floor_y[i]);
                 int j = 0;
 
-                if(up) j = chunk.floor_y[i-1];
-                else j = chunk.floor_y[i];
+                if (up)
+                    j = chunk.floor_y[i - 1];
+                else
+                    j = chunk.floor_y[i];
 
-                if (h>0 && i > 0){
-
-                    if(up) mvwaddch(screen, ((maxY + TOP_PADDING) - j), x, ACS_URCORNER);
-                    else mvwaddch(screen, ((maxY + TOP_PADDING) - j), x, ACS_ULCORNER);
+                if (h > 0 && i > 0) {
+                    mvwaddch(screen, ((this->maxY + TOP_PADDING) - j), x, (up ? ACS_URCORNER : ACS_ULCORNER));
                     h--;
                     j--;
-                    while(h > 0){
-                        mvwaddch(screen, ((maxY + TOP_PADDING) - j), x, ACS_VLINE);
+                    while (h > 0) {
+                        mvwaddch(screen, ((this->maxY + TOP_PADDING) - j), x, ACS_VLINE);
                         h--;
                         j--;
                     }
-                    if(up) mvwaddch(screen, ((maxY + TOP_PADDING) - j), x, ACS_LLCORNER);
-                    else mvwaddch(screen, ((maxY + TOP_PADDING) - j), x, ACS_LRCORNER);
+                    mvwaddch(screen, ((this->maxY + TOP_PADDING) - j), x, (up ? ACS_LLCORNER : ACS_LRCORNER));
                 }
                 k++;
                 x++;
@@ -73,15 +64,15 @@ void MapGUI::drawFloors(){
     }
 }
 
-void MapGUI::drawPlatforms(){
-    int maxY = getmaxy(stdscr), x = 0;
+void MapGUI::drawPlatforms() {
+    this->maxY = getmaxy(stdscr);
+    int x = 0;
 
-    for(Chunk chunk : level.chunks){
-        for(int i = 0; i < CHUNK_DIMENSION; i++){
-            if(chunk.platform_y[i] != 0){
-
-                mvwaddch(screen, maxY + TOP_PADDING - chunk.platform_y[i], x, ACS_HLINE);
-                mvwaddch(screen, maxY + TOP_PADDING - chunk.platform_y[i] + chunk.platform_height[i], x, ACS_HLINE);
+    for (Chunk chunk : level.chunks) {
+        for (int i = 0; i < CHUNK_DIMENSION; i++) {
+            if (chunk.platform_y[i] != 0) {
+                mvwaddch(screen, this->maxY + TOP_PADDING - chunk.platform_y[i], x, ACS_HLINE);
+                mvwaddch(screen, this->maxY + TOP_PADDING - chunk.platform_y[i] + chunk.platform_height[i], x, ACS_HLINE);
             }
             x++;
         }
@@ -89,5 +80,4 @@ void MapGUI::drawPlatforms(){
 }
 
 void MapGUI::getLevel() {
-
 }

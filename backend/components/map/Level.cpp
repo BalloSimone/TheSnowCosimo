@@ -1,7 +1,7 @@
 #include "Level.hpp"
 
 Level::Level() {
-    generateLevel();
+    // generateLevel();
 }
 
 void Level::generateLevel() {

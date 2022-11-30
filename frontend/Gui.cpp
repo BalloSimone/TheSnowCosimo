@@ -4,17 +4,14 @@
 
 #include "Gui.hpp"
 
-Gui::Gui(WINDOW *win) {
-  screen = win;
-  level.screen = win;
-  level.drawMap();
+Gui::Gui(WINDOW *win) : mapGui(win) {
+    screen = win;
+    this->mapGui.screen = win;
+    this->mapGui.drawMap();
 }
 
-
 void Gui::precLevel() {
-
 }
 
 void Gui::succLevel() {
-
 }

@@ -1,10 +1,11 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#define GRAVITY_TICKS 10
+#define GRAVITY_TICKS 4
 
 #include <ncurses.h>
 
+#include <frontend/mapgui/MapGUI.hpp>
 #include <iostream>
 
 class Entity {
@@ -17,6 +18,8 @@ class Entity {
 
     int *ticks;
 
+    MapGUI *mapGUIPtr;
+
     virtual void _undrawEntity() = 0;
     virtual void _drawEntity() = 0;
     // void _displayHealth();
@@ -24,9 +27,10 @@ class Entity {
     // void _displayLives();
 
    public:
-    Entity(WINDOW *win, int coordX, int coordY, int *ticks);
+    Entity(WINDOW *win, int coordX, int coordY, int *ticks, MapGUI *mapGUIPtr);
     // virtual void move(int addX, int addY) = 0;
     virtual void tick() = 0;
+    virtual bool isOnFloor() = 0;
     // void jump();
     // void collectCoins();
     // int health;  // 0 - 100

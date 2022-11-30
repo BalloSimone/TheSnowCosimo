@@ -1,14 +1,12 @@
 #include "Player.hpp"
 
 #include <frontend/Gui.hpp>
+#include <frontend/mapgui/MapGUI.hpp>
 
 #include "../Entity.hpp"
 
-#define JUMP_TICKS 10
-#define JUMP_HEIGHT 4
-
-Player::Player(WINDOW *win, int coordX, int coordY, int *ticks)
-    : Entity(win, coordX, coordY, ticks) {
+Player::Player(WINDOW *win, int coordX, int coordY, int *ticks, MapGUI *mapGUIPtr, int *pressedKey)
+    : Entity(win, coordX, coordY, ticks, mapGUIPtr) {
     this->health = 100;  // 0 - 100
     this->coins = 0;     // 0 - 100
     this->lives = 5;     // 1 - 99
@@ -20,6 +18,10 @@ Player::Player(WINDOW *win, int coordX, int coordY, int *ticks)
     this->shownHealth = 0;  // health shown in bar
     this->shownCoins = -1;  // don't re-render
     this->shownLives = -1;  // don't re-render
+
+    this->pressedKey = pressedKey;
+
+    this->move(0, -this->coordY - 4 + this->mapGUIPtr->level.chunks->floor_y[10]);
 }
 
 void Player::tick() {
@@ -27,11 +29,15 @@ void Player::tick() {
     this->_displayHealth();
     this->_displayCoins();
     this->_displayLives();
+    this->_inputMovements();
     // mvwprintw(win, 1, 20, "%d", *(this->ticks));
-    mvwprintw(win, 1, 18, "yPos:%d", this->coordY);
-    mvwprintw(win, 1, 24, "xPos:%d", this->coordX);
-    mvwprintw(win, 1, 32, "jmpTick:%04d", this->jumpTick);
-    mvwprintw(win, 1, 45, "isJmp:%d", this->isJumping);
+    mvwprintw(win, 1, 19, "yPos:%d", this->coordY);
+    mvwprintw(win, 1, 27, "xPos:%d", this->coordX);
+    mvwprintw(win, 1, 35, "jmpTick:%04d", this->jumpTick);
+    mvwprintw(win, 1, 50, "isJmp:%d", this->isJumping);
+    mvwprintw(win, 1, 58, "ticks:%d", *this->ticks);
+    mvwprintw(win, 1, 71, "lastYTick:%d", this->lastYTick);
+    mvwprintw(win, 1, 88, "isOnFloor:%d", this->isOnFloor());
 }
 
 void Player::_undrawEntity() {
@@ -51,11 +57,12 @@ void Player::_gravity() {
     if (*this->ticks - this->jumpTick > JUMP_TICKS) {
         this->isJumping = false;
     }
+    if (this->lastYTick == -1) this->lastYTick = *this->ticks;
     if (
-        (this->lastYTick == -1 || (*this->ticks - this->lastYTick) > GRAVITY_TICKS) && (this->coordY < 27) && !this->isJumping) {
+        ((*this->ticks - this->lastYTick) > GRAVITY_TICKS) && !this->isOnFloor() && !this->isJumping) {
         this->lastYTick = *this->ticks;
         this->_undrawEntity();
-        this->coordY += 1;
+        this->move(0, 1);
         this->_drawEntity();
     }
 }
@@ -65,7 +72,11 @@ void Player::jump() {
     if (!this->isJumping && (this->jumpTick == -1 || *this->ticks - this->jumpTick > JUMP_TICKS)) {
         this->isJumping = true;
         this->jumpTick = *this->ticks;
-        this->move(0, -JUMP_HEIGHT);
+        if (this->coordY > this->_getFloorY(this->coordX) + 2) {
+            this->move(0, this->_getFloorY(this->coordX) - this->coordY + 1);
+        } else {
+            this->move(0, -JUMP_HEIGHT);
+        }
     }
 }
 
@@ -124,7 +135,43 @@ void Player::_displayLives() {
 
 void Player::move(int addX, int addY) {
     this->_undrawEntity();
-    this->coordX = this->clamp(this->coordX + addX, 1, WIN_LENGTH - 2);
-    this->coordY = this->clamp(this->coordY + addY, 1, WIN_HEIGTH - 2);
+
+    if (this->_getFloorY(this->coordX + addX + (addX > 0 ? 0 : -1)) + 1 >= this->coordY) {
+        this->coordX = this->clamp(this->coordX + addX, 1, WIN_LENGTH - 2);
+    }
+    this->coordY = this->clamp(this->coordY + addY, 1, this->mapGUIPtr->maxY - 3);
     this->_drawEntity();
+}
+
+int Player::_getFloorY(int coordX) {
+    return this->mapGUIPtr->maxY + TOP_PADDING - this->mapGUIPtr->level.chunks->floor_y[coordX] - 4;
+}
+
+bool Player::isOnFloor() {
+    // if (*this->ticks % 5 == 0)
+    mvwprintw(this->win, 3, 7, "Floor[%003d]=%003d floorY-1=%d floorY+1=%d", this->coordX, this->_getFloorY(this->coordX), this->_getFloorY(this->coordX - 1), this->_getFloorY(this->coordX + 1));
+    return this->coordY > this->_getFloorY(this->coordX) || this->coordY > this->_getFloorY(this->coordX - 1);
+}
+
+void Player::_inputMovements() {
+    if (this->pressedKey == NULL) return;
+
+    if (*this->pressedKey == 'a') {
+        this->move(-1, 0);
+        mvwprintw(win, 4, 1, "left ");
+    } else if (*this->pressedKey == 'd') {
+        this->move(1, 0);
+        mvwprintw(win, 4, 1, "right");
+    } else if (*this->pressedKey == ' ') {
+        this->jump();
+        mvwprintw(win, 4, 1, "jump ");
+    } else if (*this->pressedKey == 'e') {
+        // attacca eugenio
+    } else if (*this->pressedKey == 'c') {
+        // DEBUG
+        this->coins += 5;
+    } else if (*this->pressedKey == 'v') {
+        // DEBUG
+        this->lives += 1;
+    }
 }

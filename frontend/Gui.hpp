@@ -14,10 +14,8 @@ struct ListLevel {
 typedef ListLevel *Levels;
 
 class Gui {
-   protected:
-    MapGUI level;
-
    public:
+    MapGUI mapGui;
     WINDOW *screen;
     Gui(WINDOW *win);
     void succLevel();

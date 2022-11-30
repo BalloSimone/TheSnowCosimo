@@ -5,11 +5,9 @@
 #define N_CHUNKS 4
 
 class Level {
-   protected:
-    void generateLevel();
-
    public:
     Level();
+    void generateLevel();
     Chunk chunks[N_CHUNKS];
 };
 

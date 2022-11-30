@@ -16,6 +16,8 @@ class Player : public virtual Entity {
     void _displayCoins();
     void _displayLives();
     void _gravity();
+    int _getFloorY(int coordX);
+    void _inputMovements();
 
     int lastYTick;
     int jumpTick;
@@ -23,13 +25,15 @@ class Player : public virtual Entity {
     int shownHealth;  // health shown in bar
     int shownCoins;   // don't re-render
     int shownLives;   // don't re-render
+    int *pressedKey;
 
    public:
-    Player(WINDOW *win, int coordX, int coordY, int *ticks);
+    Player(WINDOW *win, int coordX, int coordY, int *ticks, MapGUI *mapGUIPtr, int *pressedKey);
     void move(int addX, int addY);
     void tick();
     void jump();
     void collectCoins();
+    bool isOnFloor();
     int health;  // 0 - 100
     int coins;   // 0 - 100
     int lives;   // 1 - 99
