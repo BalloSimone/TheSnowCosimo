@@ -1,25 +1,26 @@
 #ifndef MAPGUI_HPP
 #define MAPGUI_HPP
 
-#include "../../backend/components/map/Level.hpp"
 #include <ncurses.h>
+
+#include "../../backend/components/map/Level.hpp"
+
 #define MAP_LENGTH 32
 #define MAP_HEIGHT 32
 
-
+#define SCALE 1
+#define TOP_PADDING 15
 
 class MapGUI {
-protected:
+   public:
     Level level;
-
-public:
+    int maxY;
     MapGUI(WINDOW* scr);
-    MapGUI();
-    WINDOW * screen;
+    WINDOW* screen;
     void getLevel();
     void drawMap();
 
-private:
+   private:
     void drawFloors();
     void drawPlatforms();
 };
