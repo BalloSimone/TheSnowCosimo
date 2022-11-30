@@ -5,9 +5,11 @@
 #include "frontend/Gui.hpp"
 
 int main() {
-    WINDOW *win = newwin(64, 64, 0, 0);
     srand(time(nullptr));
     initscr();
+    refresh();
+    WINDOW *win = newwin(64, 240, 0, 0);
+    box(win, 0, 0);
     Gui gui(win);
 
     // global settings
@@ -37,7 +39,7 @@ int main() {
 
     int key = -1;
     while (key != 'q') {
-        key = getch();
+        key = wgetch(win);
         if (key == 'a') {
             player.move(-1, 0);
         } else if (key == 'd') {
