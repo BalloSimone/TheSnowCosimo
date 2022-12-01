@@ -1,13 +1,12 @@
 #include <iostream>
-#include "frontend/Gui.hpp"
+#include "backend/Game.hpp"
 
 int main(){
     srand(time(nullptr));
     initscr();
     refresh();
     WINDOW *win = newwin(64, 240, 0, 0);
-    box(win, 0, 0);
-    Gui gui(win);
+    Game ga
 
 
     int key = -1;

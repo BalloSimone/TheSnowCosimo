@@ -9,19 +9,21 @@
 
 
 class MapGUI {
-protected:
-    Level level;
+    protected:
+        Level level;
 
-public:
-    MapGUI(WINDOW* scr);
-    MapGUI();
-    WINDOW * screen;
-    void getLevel();
-    void drawMap();
+    public:
+        MapGUI(WINDOW* scr);
+        MapGUI();
+        WINDOW * screen;
+        void drawMap();
+        Level getLogicLevel();
+        void changeLevel(int dir);
 
-private:
-    void drawFloors();
-    void drawPlatforms();
+    private:
+        void drawFloors();
+        void drawPlatforms();
+        void debug();
 };
 
 #endif

@@ -1,18 +1,8 @@
 # ninja log v5
 188	215	1669230879574021731	TheSnowCosimo	b23f6b32ea291979
-4	94	1669230705884823616	CMakeFiles/TheSnowCosimo.dir/backend/components/map/Level.cpp.o	9bf0eb22b8e9867f
-0	187	1669230879545168112	CMakeFiles/TheSnowCosimo.dir/main.cpp.o	c22ce13d21ea2903
-4	282	1669230706073337222	CMakeFiles/TheSnowCosimo.dir/backend/components/map/chunk/Chunk.cpp.o	9114a1aa7a60abb6
-1	392	1669284624797226654	build.ninja	3cbcf1ba966ba197
-4	94	1669230705884273086	CMakeFiles/TheSnowCosimo.dir/frontend/mapgui/MapGUI.cpp.o	4964e475cf497c31
-2	289	1669285976542196587	CMakeFiles/TheSnowCosimo.dir/backend/components/map/Level.cpp.o	9bf0eb22b8e9867f
-2	301	1669285976552115817	CMakeFiles/TheSnowCosimo.dir/frontend/mapgui/MapGUI.cpp.o	4964e475cf497c31
-2	315	1669285976569456135	CMakeFiles/TheSnowCosimo.dir/main.cpp.o	c22ce13d21ea2903
-2	324	1669285976577994652	CMakeFiles/TheSnowCosimo.dir/frontend/Gui.cpp.o	c8ae3ae28e6e5046
 2	330	1669285976584432309	CMakeFiles/TheSnowCosimo.dir/backend/components/map/chunk/Chunk.cpp.o	9114a1aa7a60abb6
-4	306	1669294366836640715	CMakeFiles/TheSnowCosimo.dir/frontend/mapgui/MapGUI.cpp.o	4964e475cf497c31
-4	306	1669294366836826213	CMakeFiles/TheSnowCosimo.dir/main.cpp.o	c22ce13d21ea2903
-4	306	1669294366836691339	CMakeFiles/TheSnowCosimo.dir/frontend/Gui.cpp.o	c8ae3ae28e6e5046
-1	333	1669295868743735633	CMakeFiles/TheSnowCosimo.dir/main.cpp.o	c22ce13d21ea2903
-2	334	1669295868743731633	CMakeFiles/TheSnowCosimo.dir/frontend/mapgui/MapGUI.cpp.o	4964e475cf497c31
 2	334	1669295868743731550	CMakeFiles/TheSnowCosimo.dir/frontend/Gui.cpp.o	c8ae3ae28e6e5046
+2	289	1669285976542196587	CMakeFiles/TheSnowCosimo.dir/backend/components/map/Level.cpp.o	9bf0eb22b8e9867f
+1	333	1669295868743735633	CMakeFiles/TheSnowCosimo.dir/main.cpp.o	c22ce13d21ea2903
+1	392	1669885011658932902	build.ninja	3cbcf1ba966ba197
+2	334	1669295868743731633	CMakeFiles/TheSnowCosimo.dir/frontend/mapgui/MapGUI.cpp.o	4964e475cf497c31

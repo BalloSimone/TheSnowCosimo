@@ -18,13 +18,13 @@
 #define MAX_PLAT_LEN 60
 #define MIN_PLAT_LEN 30
 #define DIST_FROM_FLOOR_MIN 7
-#define DIST_FROM_FLOOR_MAX 20
-#define H_PLAT_MIN 1
-#define H_PLAT_MAX 4
+#define DIST_FROM_FLOOR_MAX 15
+#define H_PLAT_MIN 2
+#define H_PLAT_MAX 7
 
 class Chunk {
 
-    public:
+public:
     int platform_y[CHUNK_DIMENSION];
     int platform_height[CHUNK_DIMENSION];
     int floor_y[CHUNK_DIMENSION];
@@ -34,7 +34,6 @@ class Chunk {
     private:
         void spawn_floor(int startCoord);
         void spawn_platforms();
-        void debug();
 };
 
 #endif

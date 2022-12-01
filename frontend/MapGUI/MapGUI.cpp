@@ -1,13 +1,11 @@
-//
-// Created by Simone Ballo on 23/11/22.
-//
 
 #include "MapGUI.hpp"
 #define SCALE 1
-#define TOP_PADDING 15
+#define TOP_PADDING 20
 
 MapGUI::MapGUI(WINDOW* scr) {
     screen = scr;
+    drawMap();
 }
 
 MapGUI::MapGUI() {
@@ -16,9 +14,8 @@ MapGUI::MapGUI() {
 void MapGUI::drawMap() {
     drawFloors();   //draw floors
     drawPlatforms(); //draw platforms
-    //box(stdscr, ACS_VLINE, ACS_HLINE); //draw the borders of a window
-
-
+    box(screen, ACS_VLINE, ACS_HLINE); //draw the borders of a window
+    debug(); //print debug things (for developers)
 }
 
 void MapGUI::drawFloors(){
@@ -82,12 +79,66 @@ void MapGUI::drawPlatforms(){
 
                 mvwaddch(screen, maxY + TOP_PADDING - chunk.platform_y[i], x, ACS_HLINE);
                 mvwaddch(screen, maxY + TOP_PADDING - chunk.platform_y[i] + chunk.platform_height[i], x, ACS_HLINE);
+
+                if(chunk.platform_y[i-1] != chunk.platform_y[i] ) {
+                    int h = chunk.platform_height[i];
+                    mvwaddch(screen, maxY + TOP_PADDING - chunk.platform_y[i] + h, x, ACS_LLCORNER);
+                    h--;
+                    while(h > 0){
+                        mvwaddch(screen, maxY + TOP_PADDING - chunk.platform_y[i] + h, x, ACS_VLINE);
+                        h--;
+                    }
+                    mvwaddch(screen, maxY + TOP_PADDING - chunk.platform_y[i] + h, x, ACS_ULCORNER);
+                }
+
+                if(chunk.platform_y[i+1] != chunk.platform_y[i])  {
+                    int h = chunk.platform_height[i];
+                    mvwaddch(screen, maxY + TOP_PADDING - chunk.platform_y[i] + h, x, ACS_LRCORNER);
+                    h--;
+                    while(h > 0){
+                        mvwaddch(screen, maxY + TOP_PADDING - chunk.platform_y[i] + h, x, ACS_VLINE);
+                        h--;
+                    }
+                    mvwaddch(screen, maxY + TOP_PADDING - chunk.platform_y[i] + h, x, ACS_URCORNER);
+                }
+
             }
             x++;
         }
     }
 }
 
-void MapGUI::getLevel() {
+void MapGUI::debug(){
+    wmove(screen, 0, 0);
+    int cont_chunk = 0;
+    for(Chunk chunk : level.chunks ){
+        cont_chunk++;
+        wprintw(screen, "FLOOR %d:   ", cont_chunk);
+        for(int i=0; i<CHUNK_DIMENSION; i++){
+            wprintw(screen, "%d ", chunk.floor_y[i]);
+        }
+        wprintw(screen, "\n");
 
+        wprintw(screen, "PLAT %d:   ", cont_chunk);
+        for(int i=0; i<CHUNK_DIMENSION; i++){
+            wprintw(screen, "%d ", chunk.platform_y[i]);
+        }
+        wprintw(screen, "\n");
+
+        wprintw(screen, "PLAT_HEIGHT %d:   ", cont_chunk);
+        for(int i=0; i<CHUNK_DIMENSION; i++){
+            wprintw(screen, "%d ", chunk.platform_height[i]);
+        }
+        wprintw(screen, "\n");
+    }
+}
+
+Level MapGUI :: getLogicLevel() {
+    return this->level;
+}
+
+void MapGUI :: changeLevel(int dir){ //+1 in avanti , -1 in dietro
+    if(dir == 1) this->level = this->level.next_level;
+    else if(dir == -1 && this->level.prec_level != nullptr) this->level = this->level.prec_level;
+    //redraw map
 }

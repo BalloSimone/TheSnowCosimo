@@ -12,4 +12,5 @@ add_executable(TheSnowCosimo
     backend/components/map/Level.cpp
     frontend/mapgui/MapGUI.cpp
     frontend/Gui.cpp
+    backend/Game.cpp
 )

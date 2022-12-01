@@ -8,7 +8,6 @@ Chunk::Chunk() {
 void Chunk::create_chunk(int startHeight) {
     spawn_floor(startHeight);
     spawn_platforms();
-    //debug();
 }
 
 void Chunk::spawn_platforms() {
@@ -88,16 +87,3 @@ void Chunk::spawn_floor(int startCoord) {
     }
 }
 
-void Chunk::debug(){
-    printw("PLAT:     ");
-    for (int i = 0; i < CHUNK_DIMENSION; i++) {
-        printw("%d ", platform_y[i]);
-    }
-    printw("\n");
-
-    printw("H_PLAT:   ");
-    for (int i = 0; i < CHUNK_DIMENSION; i++) {
-        printw("%d ", platform_height[i]);
-    }
-    printw("\n");
-}
